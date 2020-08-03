@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { Artists } from '../models/artist.model';
+import { Artists } from '../models/artists.model';
 import { AccessToken } from './../models/access-token.model';
 
 @Injectable({

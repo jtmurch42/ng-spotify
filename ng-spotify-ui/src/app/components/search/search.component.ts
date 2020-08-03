@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { SpotifyService } from '../../services/spotify.service';
-import { ArtistData } from '../../models/artist.model';
+import { ArtistData } from '../../models/artists.model';
 
 @Component({
   selector: 'app-search',
