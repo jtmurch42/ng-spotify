@@ -17,7 +17,7 @@ export class ApiInterceptor implements HttpInterceptor {
     return next.handle(reqCopy).pipe(
       catchError((err) => {
         if (err instanceof HttpErrorResponse && err.status === 401) {
-          return this.spotifyService.accessToken().pipe(
+          return this.spotifyService.getAccessToken().pipe(
             switchMap((res) => {
               localStorage.setItem('token', res.access_token);
               reqCopy = req.clone({

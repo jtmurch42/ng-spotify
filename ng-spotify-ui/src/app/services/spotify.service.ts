@@ -14,7 +14,7 @@ import { RelatedArtists } from '../models/related-artists.model';
 export class SpotifyService {
   constructor(private http: HttpClient) {}
 
-  accessToken(): Observable<AccessToken> {
+  getAccessToken(): Observable<AccessToken> {
     return this.http.get<AccessToken>('/api/token');
   }
 
