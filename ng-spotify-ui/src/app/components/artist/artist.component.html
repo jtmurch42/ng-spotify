@@ -1,0 +1,52 @@
+<h1 class="sr-only">Artist</h1>
+
+<div class="container my-3">
+  <h2 class="page-title" *ngIf="artistName">{{ artistName }}</h2>
+  <p class="alert alert-danger" *ngIf="showError">An error occurred while getting data.</p>
+</div>
+
+<section class="container" *ngIf="albums">
+  <h3 class="section-title text-secondary">Albums</h3>
+  <div class="section-border mt-3 mb-4"></div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-lg-3 mb-3" *ngFor="let album of albums">
+      <div class="card">
+        <img [src]="album.images[0].url" [alt]="album.name" class="card-img-top" />
+      </div>
+      <h4 class="text-center mt-2">{{ album.name }}</h4>
+    </div>
+  </div>
+</section>
+
+<section class="container" *ngIf="topTracks">
+  <h3 class="section-title text-secondary">Top Songs</h3>
+  <div class="section-border mt-3 mb-4"></div>
+  <ul class="list-group">
+    <li
+      class="list-group-item d-flex flex-column flex-md-row justify-content-md-between align-items-center bg-dark my-1"
+      *ngFor="let track of topTracks"
+    >
+      {{ track.name }}
+      <audio controls *ngIf="track.preview_url">
+        <source [src]="track.preview_url" />
+      </audio>
+    </li>
+  </ul>
+</section>
+
+<section class="container mt-4" *ngIf="relatedArtists">
+  <h3 class="section-title text-secondary">Related Artists</h3>
+  <div class="section-border mt-3 mb-4"></div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-lg-3 mb-3" *ngFor="let artist of relatedArtists">
+      <div class="card">
+        <a routerLink="/artist/{{ artist.id }}">
+          <img [src]="artist.images[0].url" [alt]="artist.name" class="card-img-top" />
+        </a>
+      </div>
+      <h4 class="text-center mt-2">
+        <a class="related-artist-link" routerLink="/artist/{{ artist.id }}">{{ artist.name }}</a>
+      </h4>
+    </div>
+  </div>
+</section>

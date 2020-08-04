@@ -1,10 +1,10 @@
 export interface Artists {
-  artists: ArtistData;
+  artists: Artist;
 }
 
-export interface ArtistData {
+export interface Artist {
   href: string;
-  items: ArtistItems[];
+  items: ArtistInfo[];
   limit: number;
   next: number;
   offset: number;
@@ -12,7 +12,7 @@ export interface ArtistData {
   total: number;
 }
 
-interface ArtistItems {
+export interface ArtistInfo {
   external_urls: {
     spotify: string;
   };
@@ -22,14 +22,14 @@ interface ArtistItems {
   genres: string[];
   href: string;
   id: string;
-  images: ArtistImages[];
+  images: ArtistImage[];
   name: string;
   popularity: number;
   type: string;
   uri: string;
 }
 
-interface ArtistImages {
+interface ArtistImage {
   height: number;
   url: string;
   width: number;
