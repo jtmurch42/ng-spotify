@@ -10,9 +10,7 @@
   *ngIf="artistInfo"
 >
   <h2 class="page-title">{{ artistInfo.name }}</h2>
-  <p class="spotify-link">
-    <a [href]="artistInfo.external_urls.spotify" target="_blank">View Artist on Spotify</a>
-  </p>
+  <a class="spotify-link" [href]="artistInfo.external_urls.spotify" target="_blank">View Artist on Spotify</a>
 </section>
 
 <section class="container" *ngIf="albums">
