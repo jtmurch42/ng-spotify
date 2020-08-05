@@ -22,7 +22,7 @@
     <ng-container *ngFor="let artist of artists.items">
       <div class="col-xs-12 col-sm-6 col-lg-3" *ngIf="artist.images[0]?.url">
         <div class="card">
-          <a routerLink="artist/{{ artist.id }}">
+          <a routerLink="/artist/{{ artist.id }}">
             <img [src]="artist.images[0].url" [alt]="artist.name" class="card-img-top" />
           </a>
           <div class="card-body">
@@ -30,7 +30,7 @@
             <ul class="genre-list" *ngIf="artist.genres.length > 0">
               <li *ngFor="let genre of artist.genres" class="genre-list-item">{{ genre }}</li>
             </ul>
-            <button class="btn btn-dark view-btn" routerLink="artist/{{ artist.id }}">
+            <button class="btn btn-dark view-btn" routerLink="/artist/{{ artist.id }}">
               View Artist
             </button>
           </div>

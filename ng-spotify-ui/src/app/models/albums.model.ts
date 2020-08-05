@@ -1,6 +1,6 @@
 export interface Albums {
   href: string;
-  items: Album[];
+  items: AlbumItem[];
   limit: number;
   next: string;
   offset: number;
@@ -8,7 +8,7 @@ export interface Albums {
   total: number;
 }
 
-export interface Album {
+export interface AlbumItem {
   album_group: string;
   album_type: string;
   artists: AlbumArtist[];
@@ -27,7 +27,7 @@ export interface Album {
   uri: string;
 }
 
-interface AlbumArtist {
+export interface AlbumArtist {
   external_urls: {
     spotify: string;
   };
@@ -38,7 +38,7 @@ interface AlbumArtist {
   uri: string;
 }
 
-interface AlbumImage {
+export interface AlbumImage {
   height: number;
   url: string;
   width: number;

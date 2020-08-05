@@ -1,0 +1,26 @@
+<h1 class="sr-only">Album</h1>
+
+<section class="container mt-3" *ngIf="showError">
+  <p class="alert alert-danger">An error occurred while getting album data.</p>
+  <button class="btn btn-light" routerLink="/">Home</button>
+</section>
+
+<section class="container my-3" *ngIf="album">
+  <div class="d-flex flex-column flex-lg-row justify-content-lg-between align-items-lg-center">
+    <h2 class="page-title">{{ album.artists[0].name }} - {{ album.name }}</h2>
+    <p class="release-date">{{ album.release_date | date: "MMMM d, y" }}</p>
+  </div>
+  <img class="album-img" [src]="album.images[0].url" />
+  <div class="section-border mt-3 mb-4"></div>
+  <ul class="list-group">
+    <li
+      class="list-group-item d-flex flex-column flex-md-row justify-content-md-between align-items-center bg-dark my-1"
+      *ngFor="let track of album.tracks.items"
+    >
+      {{ track.name }}
+      <audio controls *ngIf="track.preview_url">
+        <source [src]="track.preview_url" />
+      </audio>
+    </li>
+  </ul>
+</section>

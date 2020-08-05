@@ -4,6 +4,7 @@ import { Observable, forkJoin } from 'rxjs';
 
 import { AccessToken } from '../models/access-token.model';
 import { Artists, ArtistInfo } from '../models/artists.model';
+import { Album } from './../models/album.model';
 import { Albums } from '../models/albums.model';
 import { TopTracks } from '../models/top-tracks.model';
 import { RelatedArtists } from '../models/related-artists.model';
@@ -27,7 +28,7 @@ export class SpotifyService {
 
   getArtistDetails(artistId: string): Observable<[ArtistInfo, Albums, TopTracks, RelatedArtists]> {
     const artistInfo$ = this.getArtistInfo(artistId);
-    const albums$ = this.getAlbums(artistId, '4');
+    const albums$ = this.getAlbums(artistId, '50');
     const tracks$ = this.getTopTracks(artistId);
     const relatedArtists$ = this.getRelatedArtists(artistId);
     return forkJoin(artistInfo$, albums$, tracks$, relatedArtists$);
@@ -49,5 +50,9 @@ export class SpotifyService {
 
   getRelatedArtists(artistId: string): Observable<RelatedArtists> {
     return this.http.get<RelatedArtists>(`https://api.spotify.com/v1/artists/${artistId}/related-artists`);
+  }
+
+  getAlbum(albumId: string): Observable<Album> {
+    return this.http.get<Album>(`https://api.spotify.com/v1/albums/${albumId}`);
   }
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Album } from '../../models/albums.model';
+import { ArtistInfo } from './../../models/artists.model';
+import { AlbumItem } from '../../models/albums.model';
 import { TopTrack } from './../../models/top-tracks.model';
 import { RelatedArtist } from './../../models/related-artists.model';
 import { SpotifyService } from '../../services/spotify.service';
@@ -12,8 +13,8 @@ import { SpotifyService } from '../../services/spotify.service';
   styleUrls: ['./artist.component.scss']
 })
 export class ArtistComponent implements OnInit {
-  artistName: string;
-  albums: Album[];
+  artistInfo: ArtistInfo;
+  albums: AlbumItem[];
   topTracks: TopTrack[];
   relatedArtists: RelatedArtist[];
   showError: boolean;
@@ -27,10 +28,10 @@ export class ArtistComponent implements OnInit {
     });
   }
 
-  getDetails(artistId: string): void {
+  private getDetails(artistId: string): void {
     this.spotifyService.getArtistDetails(artistId).subscribe(
       ([artistInfo, albums, topTracks, relatedArtists]) => {
-        this.artistName = artistInfo.name;
+        this.artistInfo = artistInfo;
         this.albums = albums.items;
         this.topTracks = topTracks.tracks;
         this.relatedArtists = relatedArtists.artists;
