@@ -1,9 +1,9 @@
 <h1 class="sr-only">Artist</h1>
 
-<div class="container my-3">
+<section class="container my-3">
   <h2 class="page-title" *ngIf="artistName">{{ artistName }}</h2>
   <p class="alert alert-danger" *ngIf="showError">An error occurred while getting data.</p>
-</div>
+</section>
 
 <section class="container" *ngIf="albums">
   <h3 class="section-title text-secondary">Albums</h3>
