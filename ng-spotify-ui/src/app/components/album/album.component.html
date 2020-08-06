@@ -5,7 +5,7 @@
   <button class="btn btn-light" routerLink="/">Home</button>
 </section>
 
-<section class="container my-3" *ngIf="album">
+<section class="container mt-3" *ngIf="album">
   <div class="d-flex flex-column flex-lg-row justify-content-lg-between align-items-lg-center">
     <h2 class="page-title">{{ album.artists[0].name }} - {{ album.name }}</h2>
     <p class="release-date">{{ album.release_date | date: "MMMM d, y" }}</p>
