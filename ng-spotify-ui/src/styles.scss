@@ -27,3 +27,16 @@ audio {
   font-size: 1.2rem;
   font-weight: 600;
 }
+
+.back-btn {
+  font-size: 1.2rem;
+  width: 100%;
+
+  svg {
+    margin: 0 2px;
+  }
+
+  @media (min-width: 768px) {
+    width: 100px;
+  }
+}
