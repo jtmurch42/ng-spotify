@@ -35,4 +35,10 @@ audio {
   @media (min-width: 768px) {
     width: 100px;
   }
+
+  .back-arrow {
+    position: relative;
+    top: 1px;
+    font-weight: 600;
+  }
 }

@@ -26,5 +26,7 @@
 </section>
 
 <section class="container mt-3 mb-4" *ngIf="album">
-  <button class="btn btn-light back-btn" routerLink="/artist/{{ album.artists[0].id }}">Back</button>
+  <button class="btn btn-light back-btn" routerLink="/artist/{{ album.artists[0].id }}">
+    <span class="back-arrow">&larr;</span> Back
+  </button>
 </section>
