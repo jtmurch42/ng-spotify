@@ -18,7 +18,7 @@
   <div class="section-border mt-3 mb-4"></div>
   <div class="row">
     <ng-container *ngFor="let album of albums">
-      <div class="col-xs-12 col-sm-6 col-lg-3 mt-2" *ngIf="album.id && album.images[0]?.url">
+      <div class="col-sm-6 col-lg-3 mt-2" *ngIf="album.id && album.images[0]?.url">
         <div class="card">
           <a routerLink="/album/{{ album.id }}">
             <img [src]="album.images[0].url" [alt]="album.name" class="card-img-top" />
@@ -34,7 +34,7 @@
     </ng-container>
     <ng-container *ngIf="moreAlbums && showMoreAlbums">
       <ng-container *ngFor="let album of moreAlbums">
-        <div class="col-xs-12 col-sm-6 col-lg-3 mt-2" *ngIf="album.id && album.images[0]?.url">
+        <div class="col-sm-6 col-lg-3 mt-2" *ngIf="album.id && album.images[0]?.url">
           <div class="card">
             <a routerLink="/album/{{ album.id }}">
               <img [src]="album.images[0].url" [alt]="album.name" class="card-img-top" />
@@ -74,7 +74,7 @@
   <h3 class="section-title text-secondary">Related Artists</h3>
   <div class="section-border mt-3 mb-4"></div>
   <div class="row">
-    <div class="col-xs-12 col-sm-6 col-lg-3 mt-2 mb-3" *ngFor="let artist of relatedArtists">
+    <div class="col-sm-6 col-lg-3 mt-2 mb-3" *ngFor="let artist of relatedArtists">
       <div class="card">
         <a routerLink="/artist/{{ artist.id }}">
           <img [src]="artist.images[0].url" [alt]="artist.name" class="card-img-top" />
