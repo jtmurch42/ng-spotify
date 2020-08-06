@@ -13,8 +13,11 @@ import { SpotifyService } from '../../services/spotify.service';
   styleUrls: ['./artist.component.scss']
 })
 export class ArtistComponent implements OnInit {
+  artistId: string;
   artistInfo: ArtistInfo;
   albums: AlbumItem[];
+  moreAlbums: AlbumItem[];
+  showMoreAlbums: boolean;
   topTracks: TopTrack[];
   relatedArtists: RelatedArtist[];
   showError: boolean;
@@ -23,13 +26,37 @@ export class ArtistComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((res) => {
-      const artistId = res.get('artistId');
-      this.getDetails(artistId);
+      this.moreAlbums = null;
+      this.showMoreAlbums = false;
+      this.artistId = res.get('artistId');
+      this.getDetails(this.artistId);
     });
   }
 
+  viewMoreAlbums(): void {
+    this.showMoreAlbums = true;
+
+    if (this.moreAlbums) {
+      return;
+    }
+
+    this.spotifyService.getAlbums(this.artistId, '8', '50').subscribe(
+      (res) => {
+        this.moreAlbums = res.items;
+      },
+      () => {
+        this.showError = true;
+      }
+    );
+  }
+
+  viewLessAlbums(): void {
+    this.showMoreAlbums = false;
+    window.scrollTo(0, 130);
+  }
+
   private getDetails(artistId: string): void {
-    this.spotifyService.getArtistDetails(artistId).subscribe(
+    this.spotifyService.getArtistDetails(artistId, '0', '8').subscribe(
       ([artistInfo, albums, topTracks, relatedArtists]) => {
         this.artistInfo = artistInfo;
         this.albums = albums.items;

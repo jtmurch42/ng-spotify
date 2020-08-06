@@ -1,6 +1,6 @@
 <h1 class="sr-only">Artist</h1>
 
-<section class="container mt-3" *ngIf="showError">
+<section class="container my-3" *ngIf="showError">
   <p class="alert alert-danger">An error occurred while getting data.</p>
   <button class="btn btn-light" routerLink="/">Home</button>
 </section>
@@ -18,7 +18,7 @@
   <div class="section-border mt-3 mb-4"></div>
   <div class="row">
     <ng-container *ngFor="let album of albums">
-      <div class="col-xs-12 col-sm-6 col-lg-3 mb-3" *ngIf="album.id && album.images[0]?.url">
+      <div class="col-xs-12 col-sm-6 col-lg-3 mt-2" *ngIf="album.id && album.images[0]?.url">
         <div class="card">
           <a routerLink="/album/{{ album.id }}">
             <img [src]="album.images[0].url" [alt]="album.name" class="card-img-top" />
@@ -32,7 +32,26 @@
         </div>
       </div>
     </ng-container>
+    <ng-container *ngIf="moreAlbums && showMoreAlbums">
+      <ng-container *ngFor="let album of moreAlbums">
+        <div class="col-xs-12 col-sm-6 col-lg-3 mt-2" *ngIf="album.id && album.images[0]?.url">
+          <div class="card">
+            <a routerLink="/album/{{ album.id }}">
+              <img [src]="album.images[0].url" [alt]="album.name" class="card-img-top" />
+            </a>
+          </div>
+          <div class="card-body text-center">
+            <h4>
+              <a class="card-link" routerLink="/album/{{ album.id }}">{{ album.name }}</a>
+            </h4>
+            <p>({{ album.release_date | date: "y" }})</p>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
   </div>
+  <p (click)="viewMoreAlbums()" class="view-option text-center" *ngIf="!showMoreAlbums">Show More</p>
+  <p (click)="viewLessAlbums()" class="view-option text-center" *ngIf="showMoreAlbums">Show Less</p>
 </section>
 
 <section class="container" *ngIf="topTracks">
@@ -55,7 +74,7 @@
   <h3 class="section-title text-secondary">Related Artists</h3>
   <div class="section-border mt-3 mb-4"></div>
   <div class="row">
-    <div class="col-xs-12 col-sm-6 col-lg-3" *ngFor="let artist of relatedArtists">
+    <div class="col-xs-12 col-sm-6 col-lg-3 mt-2 mb-3" *ngFor="let artist of relatedArtists">
       <div class="card">
         <a routerLink="/artist/{{ artist.id }}">
           <img [src]="artist.images[0].url" [alt]="artist.name" class="card-img-top" />
@@ -68,7 +87,7 @@
   </div>
 </section>
 
-<section class="container mt-3 mb-4" *ngIf="artistInfo && topTracks && relatedArtists">
+<section class="container my-4" *ngIf="artistInfo && topTracks && relatedArtists">
   <button class="btn btn-light back-btn" routerLink="/">
     <svg
       width="1em"

@@ -26,9 +26,13 @@ export class SpotifyService {
     return this.http.get<Artists>('https://api.spotify.com/v1/search', httpOptions);
   }
 
-  getArtistDetails(artistId: string): Observable<[ArtistInfo, Albums, TopTracks, RelatedArtists]> {
+  getArtistDetails(
+    artistId: string,
+    offset: string,
+    limit: string
+  ): Observable<[ArtistInfo, Albums, TopTracks, RelatedArtists]> {
     const artistInfo$ = this.getArtistInfo(artistId);
-    const albums$ = this.getAlbums(artistId, '50');
+    const albums$ = this.getAlbums(artistId, offset, limit);
     const tracks$ = this.getTopTracks(artistId);
     const relatedArtists$ = this.getRelatedArtists(artistId);
     return forkJoin(artistInfo$, albums$, tracks$, relatedArtists$);
@@ -38,8 +42,8 @@ export class SpotifyService {
     return this.http.get<ArtistInfo>(`https://api.spotify.com/v1/artists/${artistId}`);
   }
 
-  getAlbums(artistId: string, limit: string): Observable<Albums> {
-    const httpOptions = { params: new HttpParams().set('limit', limit) };
+  getAlbums(artistId: string, offset: string, limit: string): Observable<Albums> {
+    const httpOptions = { params: new HttpParams().set('offset', offset).set('limit', limit) };
     return this.http.get<Albums>(`https://api.spotify.com/v1/artists/${artistId}/albums`, httpOptions);
   }
 

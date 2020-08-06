@@ -1,14 +1,21 @@
-.card-link {
-  color: white;
+.spotify-link {
+  color: yellow;
+  font-weight: 500;
 
   &:hover {
     text-decoration: underline;
   }
 }
 
-.spotify-link {
+.view-option {
+  font-size: 1.2rem;
   color: yellow;
-  font-weight: 500;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.card-link {
+  color: white;
 
   &:hover {
     text-decoration: underline;
