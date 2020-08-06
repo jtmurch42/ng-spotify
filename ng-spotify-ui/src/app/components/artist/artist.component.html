@@ -1,5 +1,3 @@
-<h1 class="sr-only">Artist</h1>
-
 <section class="container my-3" *ngIf="showError">
   <p class="alert alert-danger">An error occurred while getting data.</p>
   <button class="btn btn-light" routerLink="/">Home</button>
@@ -9,12 +7,12 @@
   class="container d-flex flex-column flex-lg-row justify-content-lg-between align-items-lg-center mt-3"
   *ngIf="artistInfo"
 >
-  <h2 class="page-title">{{ artistInfo.name }}</h2>
+  <h1 class="page-title">{{ artistInfo.name }}</h1>
   <a class="spotify-link" [href]="artistInfo.external_urls.spotify" target="_blank">View Artist on Spotify</a>
 </section>
 
 <section class="container mt-3" *ngIf="albums">
-  <h3 class="section-title text-secondary">Albums</h3>
+  <h2 class="section-title text-secondary">Albums</h2>
   <div class="section-border mt-3 mb-4"></div>
   <div class="row">
     <ng-container *ngFor="let album of albums">
@@ -25,9 +23,9 @@
           </a>
         </div>
         <div class="card-body text-center">
-          <h4>
+          <h3>
             <a class="card-link" routerLink="/album/{{ album.id }}">{{ album.name }}</a>
-          </h4>
+          </h3>
           <p>({{ album.release_date | date: "y" }})</p>
         </div>
       </div>
@@ -41,9 +39,9 @@
             </a>
           </div>
           <div class="card-body text-center">
-            <h4>
+            <h3>
               <a class="card-link" routerLink="/album/{{ album.id }}">{{ album.name }}</a>
-            </h4>
+            </h3>
             <p>({{ album.release_date | date: "y" }})</p>
           </div>
         </div>
@@ -55,7 +53,7 @@
 </section>
 
 <section class="container mt-3" *ngIf="topTracks">
-  <h3 class="section-title text-secondary">Top Songs</h3>
+  <h2 class="section-title text-secondary">Top Songs</h2>
   <div class="section-border mt-3 mb-4"></div>
   <ul class="list-group">
     <li
@@ -71,7 +69,7 @@
 </section>
 
 <section class="container mt-4" *ngIf="relatedArtists">
-  <h3 class="section-title text-secondary">Related Artists</h3>
+  <h2 class="section-title text-secondary">Related Artists</h2>
   <div class="section-border mt-3 mb-4"></div>
   <div class="row">
     <div class="col-sm-6 col-lg-3 mt-2 mb-3" *ngFor="let artist of relatedArtists">
@@ -80,9 +78,9 @@
           <img [src]="artist.images[0].url" [alt]="artist.name" class="card-img-top" />
         </a>
       </div>
-      <h4 class="text-center mt-2">
+      <h3 class="text-center mt-2">
         <a class="card-link" routerLink="/artist/{{ artist.id }}">{{ artist.name }}</a>
-      </h4>
+      </h3>
     </div>
   </div>
 </section>
