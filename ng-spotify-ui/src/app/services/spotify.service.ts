@@ -4,7 +4,7 @@ import { Observable, forkJoin } from 'rxjs';
 
 import { AccessToken } from '../models/access-token.model';
 import { Artists, ArtistInfo } from '../models/artists.model';
-import { Album } from './../models/album.model';
+import { Album } from '../models/album.model';
 import { Albums } from '../models/albums.model';
 import { TopTracks } from '../models/top-tracks.model';
 import { RelatedArtists } from '../models/related-artists.model';

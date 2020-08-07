@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 
 import { ArtistInfo } from './../../models/artists.model';
 import { AlbumItem } from '../../models/albums.model';
-import { TopTrack } from './../../models/top-tracks.model';
-import { RelatedArtist } from './../../models/related-artists.model';
+import { TopTrack } from '../../models/top-tracks.model';
+import { RelatedArtist } from '../../models/related-artists.model';
 import { SpotifyService } from '../../services/spotify.service';
 
 @Component({
