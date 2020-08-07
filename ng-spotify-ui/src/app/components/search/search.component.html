@@ -28,7 +28,7 @@
           <div class="card-body">
             <h2 class="card-title">{{ artist.name }}</h2>
             <ul class="genre-list" *ngIf="artist.genres.length > 0">
-              <li *ngFor="let genre of artist.genres" class="genre-list-item">{{ genre }}</li>
+              <li class="genre-list-item" *ngFor="let genre of artist.genres">{{ genre }}</li>
             </ul>
             <button class="btn btn-dark view-btn" routerLink="/artist/{{ artist.id }}">
               View Artist

@@ -20,28 +20,28 @@
   @media (min-width: 768px) {
     margin: 20px 10px 40px 10px;
   }
-}
 
-.card-title {
-  font-size: 1.2rem;
-}
-
-.card-body {
-  padding: 1rem;
-}
-
-.genre-list {
-  margin: 0;
-  padding: 0;
-
-  &-item {
-    font-size: 0.9rem;
-    list-style-type: none;
+  .card-body {
+    padding: 1rem;
   }
-}
 
-.view-btn {
-  font-size: 0.95rem;
-  margin-top: 15px;
-  padding: 0.25rem 0.5rem;
+  .card-title {
+    font-size: 1.2rem;
+  }
+
+  .genre-list {
+    margin: 0;
+    padding: 0;
+
+    .genre-list-item {
+      font-size: 0.9rem;
+      list-style-type: none;
+    }
+  }
+
+  .view-btn {
+    font-size: 0.95rem;
+    margin-top: 15px;
+    padding: 0.25rem 0.5rem;
+  }
 }
