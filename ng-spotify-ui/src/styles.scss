@@ -5,12 +5,11 @@ body {
   color: white;
 }
 
-audio {
-  height: 35px;
-  margin-top: 8px;
+a {
+  color: yellow;
 
-  @media (min-width: 768px) {
-    margin-top: 0;
+  &:hover {
+    color: yellow;
   }
 }
 
@@ -18,11 +17,15 @@ audio {
   font-weight: 600;
 }
 
+.spotify-link {
+  font-weight: 500;
+}
+
 .section-border {
   border-bottom: 1px solid white;
 }
 
-.list-group-item {
+.track-name {
   font-size: 1.2rem;
   font-weight: 600;
 }

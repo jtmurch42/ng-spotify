@@ -8,6 +8,9 @@ export interface Album {
   external_ids: {
     upc: string;
   };
+  external_urls: {
+    spotify: string;
+  };
   genres: string[];
   href: string;
   id: string;

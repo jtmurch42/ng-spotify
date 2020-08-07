@@ -23,7 +23,7 @@
           </a>
         </div>
         <div class="card-body text-center">
-          <h3>
+          <h3 class="content-title">
             <a class="card-link" routerLink="/album/{{ album.id }}">{{ album.name }}</a>
           </h3>
           <p>({{ album.release_date | date: "y" }})</p>
@@ -39,7 +39,7 @@
             </a>
           </div>
           <div class="card-body text-center">
-            <h3>
+            <h3 class="content-title">
               <a class="card-link" routerLink="/album/{{ album.id }}">{{ album.name }}</a>
             </h3>
             <p>({{ album.release_date | date: "y" }})</p>
@@ -48,8 +48,8 @@
       </ng-container>
     </ng-container>
   </div>
-  <p (click)="viewMoreAlbums()" class="view-option text-center" *ngIf="!showMoreAlbums">Show More</p>
-  <p (click)="viewLessAlbums()" class="view-option text-center" *ngIf="showMoreAlbums">Show Less</p>
+  <p class="view-option text-center" *ngIf="!showMoreAlbums" (click)="viewMoreAlbums()">Show More</p>
+  <p class="view-option text-center" *ngIf="showMoreAlbums" (click)="viewLessAlbums()">Show Less</p>
 </section>
 
 <section class="container mt-3" *ngIf="topTracks">
@@ -57,13 +57,11 @@
   <div class="section-border mt-3 mb-4"></div>
   <ul class="list-group">
     <li
-      class="list-group-item d-flex flex-column flex-md-row justify-content-md-between align-items-center bg-dark my-1"
+      class="list-group-item d-flex flex-column flex-md-row justify-content-md-between align-items-md-center bg-dark my-1"
       *ngFor="let track of topTracks"
     >
-      {{ track.name }}
-      <audio controls *ngIf="track.preview_url">
-        <source [src]="track.preview_url" />
-      </audio>
+      <span class="track-name">{{ track.name }}</span>
+      <a *ngIf="track.preview_url" [href]="track.preview_url" target="_blank">Preview Track</a>
     </li>
   </ul>
 </section>
@@ -78,13 +76,13 @@
           <img [src]="artist.images[0].url" [alt]="artist.name" class="card-img-top" />
         </a>
       </div>
-      <h3 class="text-center mt-2">
+      <h3 class="content-title text-center mt-2">
         <a class="card-link" routerLink="/artist/{{ artist.id }}">{{ artist.name }}</a>
       </h3>
     </div>
   </div>
 </section>
 
-<section class="container my-4" *ngIf="artistInfo && topTracks && relatedArtists">
+<section class="container mt-3 mb-4" *ngIf="artistInfo && topTracks && relatedArtists">
   <button class="btn btn-light back-btn" routerLink="/"><span class="back-arrow">&larr;</span> Back</button>
 </section>
