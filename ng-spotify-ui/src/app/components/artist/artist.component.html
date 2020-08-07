@@ -23,7 +23,7 @@
           </a>
         </div>
         <div class="card-body text-center">
-          <h3 class="content-title">
+          <h3 class="card-title">
             <a class="card-link" routerLink="/album/{{ album.id }}">{{ album.name }}</a>
           </h3>
           <p>({{ album.release_date | date: "y" }})</p>
@@ -39,7 +39,7 @@
             </a>
           </div>
           <div class="card-body text-center">
-            <h3 class="content-title">
+            <h3 class="card-title">
               <a class="card-link" routerLink="/album/{{ album.id }}">{{ album.name }}</a>
             </h3>
             <p>({{ album.release_date | date: "y" }})</p>
@@ -76,7 +76,7 @@
           <img [src]="artist.images[0].url" [alt]="artist.name" class="card-img-top" />
         </a>
       </div>
-      <h3 class="content-title text-center mt-2">
+      <h3 class="card-title text-center mt-2">
         <a class="card-link" routerLink="/artist/{{ artist.id }}">{{ artist.name }}</a>
       </h3>
     </div>
