@@ -6,7 +6,7 @@ export interface Artist {
   href: string;
   items: ArtistInfo[];
   limit: number;
-  next: number;
+  next: string;
   offset: number;
   previous: number;
   total: number;
@@ -17,6 +17,7 @@ export interface ArtistInfo {
     spotify: string;
   };
   followers: {
+    href: string;
     total: number;
   };
   genres: string[];
