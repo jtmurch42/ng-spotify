@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { SpotifyService } from './spotify.service';
-import { ArtistInfo } from '../models/artists.model';
 
 describe('SpotifyService', () => {
   let service: SpotifyService;
@@ -59,14 +58,14 @@ describe('SpotifyService', () => {
       const req4 = httpTestingController.expectOne('https://api.spotify.com/v1/artists/123456/related-artists');
       expect(req4.request.method).toEqual('GET');
     });
+  });
 
-    describe('getAlbum', () => {
-      it('should get album', () => {
-        service.getAlbum('123456').subscribe();
+  describe('getAlbum', () => {
+    it('should get album', () => {
+      service.getAlbum('123456').subscribe();
 
-        const req = httpTestingController.expectOne('https://api.spotify.com/v1/albums/123456');
-        expect(req.request.method).toEqual('GET');
-      });
+      const req = httpTestingController.expectOne('https://api.spotify.com/v1/albums/123456');
+      expect(req.request.method).toEqual('GET');
     });
   });
 });
