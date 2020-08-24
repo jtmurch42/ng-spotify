@@ -1,8 +1,8 @@
-import { SpotifyService } from './../../services/spotify.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
 import { SearchComponent } from './search.component';
+import { SpotifyService } from './../../services/spotify.service';
 
 const mockArtists = {
   artists: {
