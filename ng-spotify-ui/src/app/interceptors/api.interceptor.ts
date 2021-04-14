@@ -26,10 +26,9 @@ export class ApiInterceptor implements HttpInterceptor {
               return next.handle(reqCopy);
             })
           );
-        } else {
-          const errMsg = err && err.error && err.error.error ? err.error.error.message : 'Error getting data';
-          return throwError(errMsg);
         }
+        const errMsg = err?.error?.error?.message || 'Error getting data';
+        return throwError(errMsg);
       })
     );
   }
