@@ -6,16 +6,17 @@ import { FormsModule } from '@angular/forms';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 import { AppRoutingModule } from './app-routing.module';
+
 import { ApiInterceptor } from './interceptors/api.interceptor';
+
 import { AppComponent } from './app.component';
 import { SearchComponent } from './components/search/search.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { AboutComponent } from './components/about/about.component';
 import { ArtistComponent } from './components/artist/artist.component';
 import { AlbumComponent } from './components/album/album.component';
 
 @NgModule({
-  declarations: [AppComponent, SearchComponent, NavbarComponent, AboutComponent, ArtistComponent, AlbumComponent],
+  declarations: [AppComponent, SearchComponent, NavbarComponent, ArtistComponent, AlbumComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

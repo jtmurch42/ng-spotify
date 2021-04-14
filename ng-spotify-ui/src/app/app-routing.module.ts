@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { SearchComponent } from './components/search/search.component';
 import { ArtistComponent } from './components/artist/artist.component';
 import { AlbumComponent } from './components/album/album.component';
-import { AboutComponent } from './components/about/about.component';
 
 const routes: Routes = [
   {
@@ -18,10 +17,6 @@ const routes: Routes = [
   {
     path: 'album/:albumId',
     component: AlbumComponent
-  },
-  {
-    path: 'about',
-    component: AboutComponent
   },
   {
     path: '**',
