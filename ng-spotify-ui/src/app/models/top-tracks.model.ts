@@ -21,7 +21,7 @@ export interface TopTrack {
   };
   artists: TopTrackArtist[];
   disc_number: number;
-  duration_ms: string;
+  duration_ms: number;
   explicit: boolean;
   external_ids: {
     isrc: string;
@@ -32,7 +32,7 @@ export interface TopTrack {
   href: string;
   id: string;
   is_local: boolean;
-  is_playable: string;
+  is_playable: boolean;
   name: string;
   popularity: number;
   preview_url: string;

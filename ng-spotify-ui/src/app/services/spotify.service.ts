@@ -35,7 +35,7 @@ export class SpotifyService {
     const albums$ = this.getAlbums(artistId, offset, limit);
     const tracks$ = this.getTopTracks(artistId);
     const relatedArtists$ = this.getRelatedArtists(artistId);
-    return forkJoin(artistInfo$, albums$, tracks$, relatedArtists$);
+    return forkJoin([artistInfo$, albums$, tracks$, relatedArtists$]);
   }
 
   getArtistInfo(artistId: string): Observable<ArtistInfo> {

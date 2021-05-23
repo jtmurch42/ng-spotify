@@ -1,61 +1,23 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 
 import { SearchComponent } from './search.component';
-import { SpotifyService } from './../../services/spotify.service';
-
-const mockArtists = {
-  artists: {
-    href: 'https://api.spotify.com/v1/search?query=SomeArtist&type=artist&offset=0&limit=1',
-    items: [
-      {
-        external_urls: {
-          spotify: 'https://open.spotify.com/artist/abcdef'
-        },
-        followers: {
-          href: null,
-          total: 1
-        },
-        genres: ['rock'],
-        href: 'https://api.spotify.com/v1/artists/abcdef',
-        id: 'abcdef',
-        images: [
-          {
-            height: 640,
-            url: 'https://i.scdn.co/image/abc',
-            width: 640
-          }
-        ],
-        name: 'Some Artist',
-        popularity: 1,
-        type: 'artist',
-        uri: 'spotify:artist:abcdef'
-      }
-    ],
-    limit: 1,
-    next: 'https://api.spotify.com/v1/search?query=SomeArtist&type=artist&offset=1&limit=1',
-    offset: 0,
-    previous: null,
-    total: 1
-  }
-};
-
-class MockSpotifyService {
-  getArtists = jasmine.createSpy().and.returnValue(of(mockArtists));
-}
+import { SpotifyService } from '../../services/spotify.service';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
-  let mockSpotifyService: SpotifyService;
+  let mockSpotifyService: jasmine.SpyObj<SpotifyService>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [SearchComponent],
-      providers: [{ provide: SpotifyService, useClass: MockSpotifyService }]
-    }).compileComponents();
+    mockSpotifyService = jasmine.createSpyObj('SpotifyService ', ['getArtists']);
 
-    mockSpotifyService = TestBed.inject(SpotifyService);
+    TestBed.configureTestingModule({
+      imports: [FormsModule],
+      declarations: [SearchComponent],
+      providers: [{ provide: SpotifyService, useValue: mockSpotifyService }]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -65,6 +27,40 @@ describe('SearchComponent', () => {
   });
 
   it('should get artists', () => {
+    const mockArtists = {
+      artists: {
+        href: 'https://api.spotify.com/v1/search?query=SomeArtist&type=artist&offset=0&limit=1',
+        items: [
+          {
+            external_urls: { spotify: 'https://open.spotify.com/artist/abcdef' },
+            followers: {
+              href: null,
+              total: 1
+            },
+            genres: ['rock'],
+            href: 'https://api.spotify.com/v1/artists/abcdef',
+            id: 'abcdef',
+            images: [
+              {
+                height: 640,
+                url: 'https://i.scdn.co/image/abc',
+                width: 640
+              }
+            ],
+            name: 'Some Artist',
+            popularity: 1,
+            type: 'artist',
+            uri: 'spotify:artist:abcdef'
+          }
+        ],
+        limit: 1,
+        next: 'https://api.spotify.com/v1/search?query=SomeArtist&type=artist&offset=1&limit=1',
+        offset: 0,
+        previous: null,
+        total: 1
+      }
+    };
+    mockSpotifyService.getArtists.and.returnValue(of(mockArtists));
     component.artistName = 'Some Artist';
 
     component.onSearch();
@@ -76,7 +72,7 @@ describe('SearchComponent', () => {
   it('should not get artists', () => {
     component.onSearch();
 
-    expect(mockSpotifyService.getArtists).toHaveBeenCalledTimes(0);
+    expect(mockSpotifyService.getArtists).not.toHaveBeenCalled();
     expect(component.artists).toBeUndefined();
   });
 });
