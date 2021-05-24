@@ -1,6 +1,6 @@
 {
   "name": "ng-spotify",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Search and find music with the Spotify Web API.",
   "main": "index.js",
   "scripts": {
@@ -8,6 +8,10 @@
   },
   "author": "Jeremy Murchison",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jtmurch42/ng-spotify"
+  },
   "dependencies": {
     "axios": "^0.19.2",
     "express": "^4.17.1"
