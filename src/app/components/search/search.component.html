@@ -17,20 +17,20 @@
   </div>
 </div>
 
-<div class="container" *ngIf="artists?.items.length > 0">
+<div *ngIf="artists?.items.length > 0" class="container">
   <div class="row justify-content-start mb-3">
     <ng-container *ngFor="let artist of artists.items">
-      <div class="col-sm-6 col-lg-3" *ngIf="artist.images[0]?.url">
+      <div *ngIf="artist.images[0]?.url" class="col-sm-6 col-lg-3">
         <div class="card">
           <a routerLink="/artist/{{ artist.id }}">
             <img [src]="artist.images[0].url" [alt]="artist.name" class="card-img-top" />
           </a>
           <div class="card-body">
             <h2 class="card-title">{{ artist.name }}</h2>
-            <ul class="genre-list" *ngIf="artist.genres.length > 0">
-              <li class="genre-list-item" *ngFor="let genre of artist.genres">{{ genre }}</li>
+            <ul *ngIf="artist.genres.length > 0" class="genre-list">
+              <li *ngFor="let genre of artist.genres" class="genre-list-item">{{ genre }}</li>
             </ul>
-            <button class="btn btn-dark view-btn" routerLink="/artist/{{ artist.id }}">View Artist</button>
+            <button routerLink="/artist/{{ artist.id }}" class="btn btn-dark view-btn">View Artist</button>
           </div>
         </div>
       </div>
