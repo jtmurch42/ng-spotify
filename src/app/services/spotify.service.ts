@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, forkJoin } from 'rxjs';
 
 import { AccessToken } from '../models/access-token.model';
@@ -8,6 +8,7 @@ import { Album } from '../models/album.model';
 import { Albums } from '../models/albums.model';
 import { TopTracks } from '../models/top-tracks.model';
 import { RelatedArtists } from '../models/related-artists.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,10 @@ export class SpotifyService {
   constructor(private http: HttpClient) {}
 
   getAccessToken(): Observable<AccessToken> {
-    return this.http.get<AccessToken>('/api/token');
+    const httpOptions = {
+      headers: new HttpHeaders({ 'x-api-key': environment.ngSpotifyApiKey })
+    };
+    return this.http.get<AccessToken>(`${environment.ngSpotifyApiUrl}/spotify-token`, httpOptions);
   }
 
   getArtists(artistName: string): Observable<Artists> {
