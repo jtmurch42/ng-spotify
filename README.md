@@ -10,10 +10,10 @@ This repository is the front end for the NG Spotify application.
 ng serve
 ```
 
+- Navigate your browser to [http://localhost:4200/](http://localhost:4200/) to see the application running.
+
 ## Building the Angular App
 
 ```
 ng build --prod
 ```
-
-- Navigate your browser to [http://localhost:4200/](http://localhost:4200/) to see the application running.
