@@ -1,6 +1,6 @@
-# NG Spotify
+# Spotify Search
 
-This repository is the front end for the NG Spotify application.
+This repository is the front end for the Spotify Search application.
 
 ## Running Angular App for Development (port 4200, watches file changes)
 
