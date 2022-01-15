@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, forkJoin } from 'rxjs';
 
+import { environment } from 'src/environments/environment';
 import { AccessToken } from '../models/access-token.model';
 import { Artists, ArtistInfo } from '../models/artists.model';
 import { Album } from '../models/album.model';
 import { Albums } from '../models/albums.model';
 import { TopTracks } from '../models/top-tracks.model';
 import { RelatedArtists } from '../models/related-artists.model';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +18,9 @@ export class SpotifyService {
 
   getAccessToken(): Observable<AccessToken> {
     const httpOptions = {
-      headers: new HttpHeaders({ 'x-api-key': environment.spotifySearchApiUrl })
+      headers: new HttpHeaders({ 'x-api-key': environment.spotifySearchApiKey })
     };
-    return this.http.get<AccessToken>(`${environment.spotifySearchApiKey}/spotify-token`, httpOptions);
+    return this.http.get<AccessToken>(`${environment.spotifySearchApiUrl}/spotify-token`, httpOptions);
   }
 
   getArtists(artistName: string): Observable<Artists> {
