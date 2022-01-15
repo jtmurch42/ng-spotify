@@ -8,7 +8,7 @@ export default {
   plugins: [
     new DefinePlugin({
       'wp.env': {
-        NG_SPOTIFY_API_KEY: JSON.stringify(process.env.NG_SPOTIFY_API_KEY)
+        SPOTIFY_SEARCH_API_KEY: JSON.stringify(process.env.SPOTIFY_SEARCH_API_KEY)
       }
     })
   ]
