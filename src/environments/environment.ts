@@ -6,8 +6,8 @@ declare const wp: any;
 
 export const environment = {
   production: false,
-  ngSpotifyApiUrl: 'https://li2j23pd48.execute-api.us-west-2.amazonaws.com/v1',
-  ngSpotifyApiKey: wp.env.NG_SPOTIFY_API_KEY
+  spotifySearchApiUrl: 'https://17w8hco3h7.execute-api.us-west-2.amazonaws.com/v1',
+  spotifySearchApiKey: wp.env.SPOTIFY_SEARCH_API_KEY
 };
 
 /*

@@ -18,9 +18,9 @@ export class SpotifyService {
 
   getAccessToken(): Observable<AccessToken> {
     const httpOptions = {
-      headers: new HttpHeaders({ 'x-api-key': environment.ngSpotifyApiKey })
+      headers: new HttpHeaders({ 'x-api-key': environment.spotifySearchApiUrl })
     };
-    return this.http.get<AccessToken>(`${environment.ngSpotifyApiUrl}/spotify-token`, httpOptions);
+    return this.http.get<AccessToken>(`${environment.spotifySearchApiKey}/spotify-token`, httpOptions);
   }
 
   getArtists(artistName: string): Observable<Artists> {

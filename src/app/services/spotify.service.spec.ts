@@ -40,7 +40,7 @@ describe('SpotifyService', () => {
         expect(res).toEqual(mockAccessToken);
       });
 
-      const req = httpMock.expectOne(`${environment.ngSpotifyApiUrl}/spotify-token`);
+      const req = httpMock.expectOne(`${environment.spotifySearchApiUrl}/spotify-token`);
       expect(req.request.method).toEqual('GET');
       req.flush(mockAccessToken);
     });
