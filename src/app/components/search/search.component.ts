@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
 import { SpotifyService } from '../../services/spotify.service';
+import { LoaderService } from '../../services/loader.service';
 import { Artist } from '../../models/artists.model';
-import { ErrorMessages } from 'src/app/enums/messages';
+import { ErrorMessages } from '../../enums/messages';
 
 @Component({
   selector: 'app-search',
@@ -14,7 +15,7 @@ export class SearchComponent {
   artistName: string;
   errorMsg: string;
 
-  constructor(private spotifyService: SpotifyService) {}
+  constructor(private spotifyService: SpotifyService, private loaderService: LoaderService) {}
 
   onSearch(): void {
     this.errorMsg = null;
@@ -23,12 +24,16 @@ export class SearchComponent {
       return;
     }
 
+    this.loaderService.show();
+
     this.spotifyService.getArtists(this.artistName).subscribe(
       (res) => {
         this.artists = res.artists;
+        this.loaderService.hide();
       },
       () => {
         this.errorMsg = ErrorMessages.LoadDataError;
+        this.loaderService.hide();
       }
     );
   }

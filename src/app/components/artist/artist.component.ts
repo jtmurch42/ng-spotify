@@ -7,6 +7,7 @@ import { TopTrack } from '../../models/top-tracks.model';
 import { RelatedArtist } from '../../models/related-artists.model';
 import { SpotifyService } from '../../services/spotify.service';
 import { ErrorMessages } from 'src/app/enums/messages';
+import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-artist',
@@ -23,9 +24,14 @@ export class ArtistComponent implements OnInit {
   relatedArtists: RelatedArtist[];
   errorMsg: string;
 
-  constructor(private activatedRoute: ActivatedRoute, private spotifyService: SpotifyService) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private spotifyService: SpotifyService,
+    private loaderService: LoaderService
+  ) {}
 
   ngOnInit(): void {
+    this.loaderService.show();
     this.activatedRoute.paramMap.subscribe((res) => {
       this.errorMsg = null;
       this.moreAlbums = null;
@@ -58,9 +64,11 @@ export class ArtistComponent implements OnInit {
         this.albums = albums.items;
         this.topTracks = topTracks.tracks;
         this.relatedArtists = relatedArtists.artists;
+        this.loaderService.hide();
       },
       () => {
         this.errorMsg = ErrorMessages.LoadDataError;
+        this.loaderService.hide();
       }
     );
   }

@@ -14,9 +14,10 @@ import { SearchComponent } from './components/search/search.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ArtistComponent } from './components/artist/artist.component';
 import { AlbumComponent } from './components/album/album.component';
+import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 
 @NgModule({
-  declarations: [AppComponent, SearchComponent, NavbarComponent, ArtistComponent, AlbumComponent],
+  declarations: [AppComponent, SearchComponent, NavbarComponent, ArtistComponent, AlbumComponent, ProgressBarComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

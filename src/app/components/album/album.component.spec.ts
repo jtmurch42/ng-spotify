@@ -5,8 +5,9 @@ import { of, throwError } from 'rxjs';
 
 import { AlbumComponent } from './album.component';
 import { SpotifyService } from '../../services/spotify.service';
+import { LoaderService } from '../../services/loader.service';
 import { Album } from '../../models/album.model';
-import { ErrorMessages } from 'src/app/enums/messages';
+import { ErrorMessages } from '../../enums/messages';
 
 describe('AlbumComponent', () => {
   let component: AlbumComponent;
@@ -28,7 +29,8 @@ describe('AlbumComponent', () => {
               paramMap: convertToParamMap({ albumId: '1234' })
             }
           }
-        }
+        },
+        LoaderService
       ]
     }).compileComponents();
   }));

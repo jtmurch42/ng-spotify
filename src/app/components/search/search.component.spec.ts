@@ -5,7 +5,8 @@ import { of, throwError } from 'rxjs';
 
 import { SearchComponent } from './search.component';
 import { SpotifyService } from '../../services/spotify.service';
-import { ErrorMessages } from 'src/app/enums/messages';
+import { LoaderService } from '../../services/loader.service';
+import { ErrorMessages } from '../../enums/messages';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -18,7 +19,7 @@ describe('SearchComponent', () => {
     TestBed.configureTestingModule({
       imports: [FormsModule],
       declarations: [SearchComponent],
-      providers: [{ provide: SpotifyService, useValue: mockSpotifyService }]
+      providers: [{ provide: SpotifyService, useValue: mockSpotifyService }, LoaderService]
     }).compileComponents();
   }));
 

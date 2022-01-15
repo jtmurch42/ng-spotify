@@ -5,7 +5,8 @@ import { of, throwError } from 'rxjs';
 
 import { ArtistComponent } from './artist.component';
 import { SpotifyService } from '../../services/spotify.service';
-import { ErrorMessages } from 'src/app/enums/messages';
+import { LoaderService } from '../../services/loader.service';
+import { ErrorMessages } from '../../enums/messages';
 
 describe('ArtistComponent', () => {
   let component: ArtistComponent;
@@ -24,7 +25,8 @@ describe('ArtistComponent', () => {
           useValue: {
             paramMap: of(convertToParamMap({ artistId: '1234' }))
           }
-        }
+        },
+        LoaderService
       ]
     }).compileComponents();
   }));
@@ -37,7 +39,7 @@ describe('ArtistComponent', () => {
   describe('ngOnInit', () => {
     it('should get artist details', () => {
       mockSpotifyService.getArtistDetails.and.returnValue(
-        of([null, { items: null }, { traks: null }, { artists: null }] as any)
+        of([null, { items: null }, { tracks: null }, { artists: null }] as any)
       );
 
       fixture.detectChanges();
@@ -59,7 +61,7 @@ describe('ArtistComponent', () => {
   describe('viewMoreAlbums', () => {
     it('should get albums', () => {
       mockSpotifyService.getArtistDetails.and.returnValue(
-        of([null, { items: null }, { traks: null }, { artists: null }] as any)
+        of([null, { items: null }, { tracks: null }, { artists: null }] as any)
       );
       mockSpotifyService.getAlbums.and.returnValue(of({ items: null } as any));
       fixture.detectChanges();

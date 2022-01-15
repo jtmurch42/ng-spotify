@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { SpotifyService } from '../../services/spotify.service';
+import { LoaderService } from '../../services/loader.service';
 import { Album } from '../../models/album.model';
-import { ErrorMessages } from 'src/app/enums/messages';
+import { ErrorMessages } from '../../enums/messages';
 
 @Component({
   selector: 'app-album',
@@ -14,9 +15,14 @@ export class AlbumComponent implements OnInit {
   album: Album;
   errorMsg: string;
 
-  constructor(private activatedRoute: ActivatedRoute, private spotifyService: SpotifyService) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private spotifyService: SpotifyService,
+    private loaderService: LoaderService
+  ) {}
 
   ngOnInit(): void {
+    this.loaderService.show();
     const albumId = this.activatedRoute.snapshot.paramMap.get('albumId');
     this.getAlbum(albumId);
   }
@@ -25,9 +31,11 @@ export class AlbumComponent implements OnInit {
     this.spotifyService.getAlbum(albumId).subscribe(
       (res) => {
         this.album = res;
+        this.loaderService.hide();
       },
       () => {
         this.errorMsg = ErrorMessages.LoadDataError;
+        this.loaderService.hide();
       }
     );
   }
