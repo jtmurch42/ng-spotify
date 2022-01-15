@@ -1,5 +1,5 @@
-<div *ngIf="showError" class="container my-3">
-  <p class="alert alert-danger">An error occurred while loading artist data.</p>
+<div *ngIf="errorMsg" class="container my-3">
+  <p class="alert alert-danger">{{ errorMsg }}</p>
   <button routerLink="/" class="btn btn-light">Home</button>
 </div>
 

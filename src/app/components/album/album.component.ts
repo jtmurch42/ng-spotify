@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Album } from '../../models/album.model';
 import { SpotifyService } from '../../services/spotify.service';
+import { Album } from '../../models/album.model';
+import { ErrorMessages } from 'src/app/enums/messages';
 
 @Component({
   selector: 'app-album',
@@ -11,7 +12,7 @@ import { SpotifyService } from '../../services/spotify.service';
 })
 export class AlbumComponent implements OnInit {
   album: Album;
-  showError: boolean;
+  errorMsg: string;
 
   constructor(private activatedRoute: ActivatedRoute, private spotifyService: SpotifyService) {}
 
@@ -26,7 +27,7 @@ export class AlbumComponent implements OnInit {
         this.album = res;
       },
       () => {
-        this.showError = true;
+        this.errorMsg = ErrorMessages.LoadDataError;
       }
     );
   }

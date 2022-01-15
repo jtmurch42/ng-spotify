@@ -6,6 +6,7 @@ import { AlbumItem } from '../../models/albums.model';
 import { TopTrack } from '../../models/top-tracks.model';
 import { RelatedArtist } from '../../models/related-artists.model';
 import { SpotifyService } from '../../services/spotify.service';
+import { ErrorMessages } from 'src/app/enums/messages';
 
 @Component({
   selector: 'app-artist',
@@ -20,12 +21,13 @@ export class ArtistComponent implements OnInit {
   showMoreAlbums: boolean;
   topTracks: TopTrack[];
   relatedArtists: RelatedArtist[];
-  showError: boolean;
+  errorMsg: string;
 
   constructor(private activatedRoute: ActivatedRoute, private spotifyService: SpotifyService) {}
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((res) => {
+      this.errorMsg = null;
       this.moreAlbums = null;
       this.showMoreAlbums = false;
       this.artistId = res.get('artistId');
@@ -40,19 +42,13 @@ export class ArtistComponent implements OnInit {
       return;
     }
 
-    this.spotifyService.getAlbums(this.artistId, '8', '50').subscribe(
-      (res) => {
-        this.moreAlbums = res.items;
-      },
-      () => {
-        this.showError = true;
-      }
-    );
+    this.spotifyService.getAlbums(this.artistId, '8', '10').subscribe((res) => {
+      this.moreAlbums = res.items;
+    });
   }
 
   viewLessAlbums(): void {
     this.showMoreAlbums = false;
-    window.scrollTo(0, 130);
   }
 
   private getDetails(artistId: string): void {
@@ -64,7 +60,7 @@ export class ArtistComponent implements OnInit {
         this.relatedArtists = relatedArtists.artists;
       },
       () => {
-        this.showError = true;
+        this.errorMsg = ErrorMessages.LoadDataError;
       }
     );
   }

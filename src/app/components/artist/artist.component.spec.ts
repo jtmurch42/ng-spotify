@@ -3,8 +3,9 @@ import { By } from '@angular/platform-browser';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { of, throwError } from 'rxjs';
 
-import { SpotifyService } from '../../services/spotify.service';
 import { ArtistComponent } from './artist.component';
+import { SpotifyService } from '../../services/spotify.service';
+import { ErrorMessages } from 'src/app/enums/messages';
 
 describe('ArtistComponent', () => {
   let component: ArtistComponent;
@@ -33,60 +34,49 @@ describe('ArtistComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('make call to get artist details', () => {
-    mockSpotifyService.getArtistDetails.and.returnValue(
-      of([null, { items: null }, { traks: null }, { artists: null }] as any)
-    );
+  describe('ngOnInit', () => {
+    it('should get artist details', () => {
+      mockSpotifyService.getArtistDetails.and.returnValue(
+        of([null, { items: null }, { traks: null }, { artists: null }] as any)
+      );
 
-    fixture.detectChanges();
+      fixture.detectChanges();
 
-    expect(mockSpotifyService.getArtistDetails).toHaveBeenCalledWith('1234', '0', '8');
+      expect(mockSpotifyService.getArtistDetails).toHaveBeenCalledWith('1234', '0', '8');
+    });
+
+    it('should display error', () => {
+      mockSpotifyService.getArtistDetails.and.returnValue(throwError('Error getting artist details'));
+
+      fixture.detectChanges();
+
+      const el: HTMLElement = fixture.debugElement.query(By.css('.alert')).nativeElement;
+      expect(el.innerText).toContain(ErrorMessages.LoadDataError);
+      expect(mockSpotifyService.getArtistDetails).toHaveBeenCalledWith('1234', '0', '8');
+    });
   });
 
-  it('should make call to get artists and display error', () => {
-    mockSpotifyService.getArtistDetails.and.returnValue(throwError('Error...'));
+  describe('viewMoreAlbums', () => {
+    it('should get albums', () => {
+      mockSpotifyService.getArtistDetails.and.returnValue(
+        of([null, { items: null }, { traks: null }, { artists: null }] as any)
+      );
+      mockSpotifyService.getAlbums.and.returnValue(of({ items: null } as any));
+      fixture.detectChanges();
 
-    fixture.detectChanges();
+      component.viewMoreAlbums();
 
-    const el: HTMLElement = fixture.debugElement.query(By.css('.alert')).nativeElement;
-    expect(el.innerText).toContain('An error occurred while getting data');
-    expect(mockSpotifyService.getArtistDetails).toHaveBeenCalledWith('1234', '0', '8');
+      expect(mockSpotifyService.getAlbums).toHaveBeenCalledWith('1234', '8', '10');
+    });
   });
 
-  it('should make call to get albums', () => {
-    mockSpotifyService.getArtistDetails.and.returnValue(
-      of([null, { items: null }, { traks: null }, { artists: null }] as any)
-    );
-    mockSpotifyService.getAlbums.and.returnValue(of({ items: null } as any));
-    fixture.detectChanges();
+  describe('viewLessAlbums', () => {
+    it('should view less albums', () => {
+      component.showMoreAlbums = true;
 
-    component.viewMoreAlbums();
+      component.viewLessAlbums();
 
-    expect(mockSpotifyService.getAlbums).toHaveBeenCalledWith('1234', '8', '50');
-  });
-
-  it('should make call to get albums and display error', () => {
-    mockSpotifyService.getArtistDetails.and.returnValue(
-      of([null, { items: null }, { traks: null }, { artists: null }] as any)
-    );
-    mockSpotifyService.getAlbums.and.returnValue(throwError('Error...'));
-    fixture.detectChanges();
-
-    component.viewMoreAlbums();
-    fixture.detectChanges();
-
-    const el: HTMLElement = fixture.debugElement.query(By.css('.alert')).nativeElement;
-    expect(el.innerText).toContain('An error occurred while getting data');
-    expect(mockSpotifyService.getAlbums).toHaveBeenCalledWith('1234', '8', '50');
-  });
-
-  it('should make changes to view less albums', () => {
-    const spy = spyOn(window, 'scrollTo');
-    component.showMoreAlbums = true;
-
-    component.viewLessAlbums();
-
-    expect(spy.calls.all()[0].args).toEqual([0, 130]);
-    expect(component.showMoreAlbums).toBe(false);
+      expect(component.showMoreAlbums).toBe(false);
+    });
   });
 });

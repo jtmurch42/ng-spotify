@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { SpotifyService } from './spotify.service';
+import { environment } from 'src/environments/environment';
 import { AccessToken } from '../models/access-token.model';
 import { ArtistInfo, Artists } from '../models/artists.model';
 import { Albums } from '../models/albums.model';
@@ -39,7 +40,7 @@ describe('SpotifyService', () => {
         expect(res).toEqual(mockAccessToken);
       });
 
-      const req = httpMock.expectOne('/api/token');
+      const req = httpMock.expectOne(`${environment.ngSpotifyApiUrl}/spotify-token`);
       expect(req.request.method).toEqual('GET');
       req.flush(mockAccessToken);
     });

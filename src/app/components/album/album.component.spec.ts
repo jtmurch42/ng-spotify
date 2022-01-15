@@ -6,6 +6,7 @@ import { of, throwError } from 'rxjs';
 import { AlbumComponent } from './album.component';
 import { SpotifyService } from '../../services/spotify.service';
 import { Album } from '../../models/album.model';
+import { ErrorMessages } from 'src/app/enums/messages';
 
 describe('AlbumComponent', () => {
   let component: AlbumComponent;
@@ -107,23 +108,25 @@ describe('AlbumComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should get album', () => {
-    mockSpotifyService.getAlbum.and.returnValue(of(mockAlbum));
+  describe('ngOnInit', () => {
+    it('should get album', () => {
+      mockSpotifyService.getAlbum.and.returnValue(of(mockAlbum));
 
-    fixture.detectChanges();
+      fixture.detectChanges();
 
-    expect(mockSpotifyService.getAlbum).toHaveBeenCalledWith('1234');
-    expect(component.album).toEqual(mockAlbum);
-  });
+      expect(mockSpotifyService.getAlbum).toHaveBeenCalledWith('1234');
+      expect(component.album).toEqual(mockAlbum);
+    });
 
-  it('should not get album', () => {
-    mockSpotifyService.getAlbum.and.returnValue(throwError('Error getting album test...'));
+    it('should display error', () => {
+      mockSpotifyService.getAlbum.and.returnValue(throwError('Error getting album'));
 
-    fixture.detectChanges();
+      fixture.detectChanges();
 
-    const el: HTMLElement = fixture.debugElement.query(By.css('.alert')).nativeElement;
-    expect(el.innerText).toContain('An error occurred while getting album data');
-    expect(mockSpotifyService.getAlbum).toHaveBeenCalledWith('1234');
-    expect(component.album).toBeUndefined();
+      const el: HTMLElement = fixture.debugElement.query(By.css('.alert')).nativeElement;
+      expect(el.innerText).toContain(ErrorMessages.LoadDataError);
+      expect(mockSpotifyService.getAlbum).toHaveBeenCalledWith('1234');
+      expect(component.album).toBeUndefined();
+    });
   });
 });
