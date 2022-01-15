@@ -88,7 +88,7 @@ describe('SearchComponent', () => {
       fixture.detectChanges();
 
       const el: HTMLElement = fixture.debugElement.query(By.css('.alert')).nativeElement;
-      expect(el.innerText).toContain(ErrorMessages.LoadDataError);
+      expect(el.innerText).toContain(ErrorMessages.LoadDataMsg);
     });
   });
 });

@@ -1,3 +1,3 @@
 export enum ErrorMessages {
-  LoadDataError = 'Unable to load data.'
+  LoadDataMsg = 'Unable to load data.'
 }

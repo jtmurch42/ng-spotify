@@ -53,7 +53,7 @@ describe('ArtistComponent', () => {
       fixture.detectChanges();
 
       const el: HTMLElement = fixture.debugElement.query(By.css('.alert')).nativeElement;
-      expect(el.innerText).toContain(ErrorMessages.LoadDataError);
+      expect(el.innerText).toContain(ErrorMessages.LoadDataMsg);
       expect(mockSpotifyService.getArtistDetails).toHaveBeenCalledWith('1234', '0', '8');
     });
   });

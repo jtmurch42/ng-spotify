@@ -32,7 +32,7 @@ export class SearchComponent {
         this.loaderService.hide();
       },
       () => {
-        this.errorMsg = ErrorMessages.LoadDataError;
+        this.errorMsg = ErrorMessages.LoadDataMsg;
         this.loaderService.hide();
       }
     );
