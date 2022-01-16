@@ -65,10 +65,10 @@
   <ul class="list-group">
     <li
       *ngFor="let track of topTracks"
-      class="list-group-item d-flex flex-column flex-md-row justify-content-md-between align-items-md-center bg-dark my-1"
+      class="list-group-item d-flex flex-column flex-md-row justify-content-md-between align-items-md-center bg-secondary my-1"
     >
-      <span class="track-name">{{ track.name }}</span>
-      <a *ngIf="track.preview_url" [href]="track.preview_url" target="_blank">Preview Track</a>
+      <span class="track-name mr-2">{{ track.name }}</span>
+      <audio *ngIf="track.preview_url" [src]="track.preview_url" controls></audio>
     </li>
   </ul>
 </div>

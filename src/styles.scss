@@ -1,4 +1,4 @@
-@import "bootstrap-scss/bootstrap";
+@import 'bootstrap-scss/bootstrap';
 
 body {
   background-color: black;
@@ -11,6 +11,12 @@ a {
   &:hover {
     color: yellow;
   }
+}
+
+audio {
+  min-width: 100%;
+  height: 30px;
+  margin-top: 0.5rem;
 }
 
 .page-title {
@@ -26,21 +32,34 @@ a {
 }
 
 .track-name {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 600;
+  line-height: 1.5rem;
+  margin-bottom: 2px;
 }
 
 .back-btn {
-  font-size: 1.2rem;
+  font-size: 1rem;
   width: 100%;
-
-  @media (min-width: 768px) {
-    width: 100px;
-  }
 
   .back-arrow {
     position: relative;
     top: 1px;
     font-weight: 600;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  audio {
+    margin-top: 0;
+    min-width: 300px;
+  }
+
+  .track-name {
+    margin-bottom: 0;
+  }
+
+  .back-btn {
+    width: 100px;
   }
 }
