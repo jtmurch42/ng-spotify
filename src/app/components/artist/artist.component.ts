@@ -43,18 +43,9 @@ export class ArtistComponent implements OnInit {
 
   viewMoreAlbums(): void {
     this.showMoreAlbums = true;
-
-    if (this.moreAlbums) {
-      return;
-    }
-
-    this.spotifyService.getAlbums(this.artistId, '8', '10').subscribe((res) => {
+    this.spotifyService.getAlbums(this.artistId, '8', '50').subscribe((res) => {
       this.moreAlbums = res.items;
     });
-  }
-
-  viewLessAlbums(): void {
-    this.showMoreAlbums = false;
   }
 
   private getDetails(artistId: string): void {
