@@ -68,7 +68,7 @@ describe('ArtistComponent', () => {
 
       component.viewMoreAlbums();
 
-      expect(mockSpotifyService.getAlbums).toHaveBeenCalledWith('1234', '8', '10');
+      expect(mockSpotifyService.getAlbums).toHaveBeenCalledWith('1234', '8', '50');
     });
   });
 });

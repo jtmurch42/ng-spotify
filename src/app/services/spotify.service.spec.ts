@@ -28,7 +28,7 @@ describe('SpotifyService', () => {
   });
 
   describe('getAccessToken', () => {
-    it('should return Observable<AccessToken>', () => {
+    it('should return Observable<AccessToken>', (done: DoneFn) => {
       const mockAccessToken: AccessToken = {
         access_token: 'abcdef',
         token_type: 'Bearer',
@@ -38,6 +38,7 @@ describe('SpotifyService', () => {
 
       service.getAccessToken().subscribe((res) => {
         expect(res).toEqual(mockAccessToken);
+        done();
       });
 
       const req = httpMock.expectOne(`${environment.spotifySearchApiUrl}/spotify-token`);
@@ -47,7 +48,7 @@ describe('SpotifyService', () => {
   });
 
   describe('getArtists', () => {
-    it('should return Observable<Artists>', () => {
+    it('should return Observable<Artists>', (done: DoneFn) => {
       const mockArtists: Artists = {
         artists: {
           href: 'https://api.spotify.com/v1/search?query=someartists&type=artist&offset=0&limit=50',
@@ -81,6 +82,7 @@ describe('SpotifyService', () => {
 
       service.getArtists('someartist').subscribe((res) => {
         expect(res).toEqual(mockArtists);
+        done();
       });
 
       const expectedUrl = 'https://api.spotify.com/v1/search?q=someartist&type=artist&limit=50';
@@ -91,7 +93,7 @@ describe('SpotifyService', () => {
   });
 
   describe('getArtistDetails', () => {
-    it('should return Observable<[ArtistInfo, Albums, TopTracks, RelatedArtists]>', () => {
+    it('should return Observable<[ArtistInfo, Albums, TopTracks, RelatedArtists]>', (done: DoneFn) => {
       const mockArtistInfo: ArtistInfo = {
         external_urls: { spotify: 'https://open.spotify.com/artist/1234' },
         followers: { href: null, total: 1 },
@@ -245,6 +247,7 @@ describe('SpotifyService', () => {
         expect(res[1]).toEqual(mockAlbums);
         expect(res[2]).toEqual(mockTracks);
         expect(res[3]).toEqual(mockRelatedArists);
+        done();
       });
 
       const req1 = httpMock.expectOne('https://api.spotify.com/v1/artists/123456');
@@ -266,7 +269,7 @@ describe('SpotifyService', () => {
   });
 
   describe('getAlbum', () => {
-    it('should return Observable<Album>', () => {
+    it('should return Observable<Album>', (done: DoneFn) => {
       const mockAlbum: Album = {
         album_type: 'album',
         artists: [
@@ -340,6 +343,7 @@ describe('SpotifyService', () => {
 
       service.getAlbum('123456').subscribe((res) => {
         expect(res).toEqual(mockAlbum);
+        done();
       });
 
       const req = httpMock.expectOne('https://api.spotify.com/v1/albums/123456');
